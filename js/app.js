@@ -44,11 +44,23 @@ function displayRequests(resourceType, resourceId) {
       planetName.id = "planetName";
       planetName.innerHTML = "Name: " + data.name;
       contentContainer.appendChild(planetName);
+
+      const planetTerrain = document.createElement("p");
+      planetTerrain.id = "planetTerrain";
+      planetTerrain.innerHTML = "Terrain: " + data.terrain;
+      contentContainer.appendChild(planetTerrain);
+
+      const planetPopulation = document.createElement("p");
+      planetPopulation.id = "planetPopulation";
+      planetPopulation.innerHTML = "Population: " + data.population;
+      contentContainer.appendChild(planetPopulation);
     }
   });
 
   if (resourceType === "people") {
     oReq.open("GET", "https://swapi.co/api/people/" + resourceId + "/");
+  } else if (resourceType === "planets") {
+    oReq.open("GET", "https://swapi.co/api/planets/" + resourceId + "/");
   }
   oReq.send();
 }
