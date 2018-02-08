@@ -54,6 +54,23 @@ function displayRequests(resourceType, resourceId) {
       planetPopulation.id = "planetPopulation";
       planetPopulation.innerHTML = "Population: " + data.population;
       contentContainer.appendChild(planetPopulation);
+    } else if (resourceType === "starships") {
+      const data = JSON.parse(this.responseText);
+      console.log(data);
+      const starshipName = document.createElement("h2");
+      starshipName.id = "starshipName";
+      starshipName.innerHTML = "Name: " + data.name;
+      contentContainer.appendChild(starshipName);
+
+      const starshipManufacturer = document.createElement("p");
+      starshipManufacturer.id = "starshipManufacturer";
+      starshipManufacturer.innerHTML = "Manufacturer: " + data.manufacturer;
+      contentContainer.appendChild(starshipManufacturer);
+
+      const starshipClass = document.createElement("p");
+      starshipClass.id = "starshipClass";
+      starshipClass.innerHTML = "Starship Class: " + data.starship_class;
+      contentContainer.appendChild(starshipClass);
     }
   });
 
@@ -61,6 +78,8 @@ function displayRequests(resourceType, resourceId) {
     oReq.open("GET", "https://swapi.co/api/people/" + resourceId + "/");
   } else if (resourceType === "planets") {
     oReq.open("GET", "https://swapi.co/api/planets/" + resourceId + "/");
+  } else if (resourceType === "starships") {
+    oReq.open("GET", "https://swapi.co/api/starships/" + resourceId + "/");
   }
   oReq.send();
 }
